@@ -3,7 +3,7 @@
  */
 
 describe('jupytercon2025-extension-workshop', () => {
-  it('should be tested', () => {
-    expect(1 + 1).toEqual(2);
-  });
+    it('should be tested', () => {
+        expect(1 + 1).toEqual(2);
+    });
 });

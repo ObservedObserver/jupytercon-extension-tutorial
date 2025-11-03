@@ -436,11 +436,11 @@ source <path-to-venv>/bin/activate  # On macOS/Linux
 <path-to-venv>\Scripts\activate.bat # On Windows
 ```
 
-**All `jlpm`, `pip`, and `jupyter` commands MUST run within the activated environment.**
+**All `yarn`, `pip`, and `jupyter` commands MUST run within the activated environment.**
 
 **Symptoms of running outside the environment:**
 
-- `jlpm: command not found`
+- `yarn: command not found`
 - Extension not appearing after build
 - `jupyter: command not found`
 
@@ -457,11 +457,11 @@ source <path-to-venv>/bin/activate  # On macOS/Linux
 2. **Write the code** (TypeScript in `src/`, styles in `style/`, Python in `jupytercon2025_extension_workshop/`)
 3. **Install dependencies** (if you added any to `package.json`):
    ```bash
-   jlpm install
+   yarn install
    ```
 4. **Build the extension**:
    ```bash
-   jlpm build
+   yarn build
    ```
 5. **Install the extension** (REQUIRED for JupyterLab to recognize it):
    ```bash
@@ -488,7 +488,7 @@ source <path-to-venv>/bin/activate  # On macOS/Linux
 
 Many issues arise from confusing these two steps:
 
-#### `jlpm build` — Compiles the Extension. Do this every time you change TypeScript code.
+#### `yarn build` — Compiles the Extension. Do this every time you change TypeScript code.
 
 - **What it does**: Compiles TypeScript → JavaScript, bundles the extension
 - **Output**: Creates files in `lib/` and `jupytercon2025_extension_workshop/labextension/`
@@ -503,7 +503,7 @@ Many issues arise from confusing these two steps:
 
 **You need BOTH steps!** Building prepares the code; installing registers it with JupyterLab.
 
-**Common mistake**: Running only `jlpm build` and expecting the extension to appear. It won't show up until you also run the installation commands.
+**Common mistake**: Running only `yarn build` and expecting the extension to appear. It won't show up until you also run the installation commands.
 
 ---
 
@@ -520,15 +520,15 @@ jupyter server extension enable jupytercon2025_extension_workshop
 **Development with auto-rebuild** (recommended):
 
 ```bash
-jlpm run watch                      # Auto-rebuild on file changes (keep running)
+yarn watch                      # Auto-rebuild on file changes (keep running)
 # In another terminal:
 jupyter lab
 ```
 
 **After editing TypeScript** (files in `src/`):
 
-- If using `jlpm run watch`: Just **refresh your browser** (Cmd+R / Ctrl+R)
-- If not using watch: Run `jlpm build`, then **refresh your browser**
+- If using `yarn watch`: Just **refresh your browser** (Cmd+R / Ctrl+R)
+- If not using watch: Run `yarn build`, then **refresh your browser**
 
 **Quick TypeScript validation** (optional, for fast feedback):
 
@@ -552,7 +552,7 @@ npx tsc --noEmit src/index.ts       # Check single file
 ```bash
 jupyter labextension list           # Check if extension is installed
 jupyter server extension list        # Check backend extension
-jlpm run lint                # Lint frontend code
+yarn lint                    # Lint frontend code
 ```
 
 **Browser console** (ask user to check):
@@ -612,7 +612,7 @@ ls -la jupytercon2025_extension_workshop/labextension/  # Should contain bundled
 
 **Common causes:**
 
-- ❌ Only ran `jlpm build` without installation commands
+- ❌ Only ran `yarn build` without installation commands
 - ❌ Forgot to restart JupyterLab after installation
 - ❌ Running commands outside the activated environment
 - ❌ Build errors that were missed (check terminal output)
@@ -620,10 +620,10 @@ ls -la jupytercon2025_extension_workshop/labextension/  # Should contain bundled
 ### Reset (if build state is broken)
 
 ```bash
-jlpm clean:all       # Clean build artifacts
+yarn clean:all       # Clean build artifacts
 # git clean -fdX     # (Optional) Remove all ignored files including node_modules
-jlpm install         # Only needed if you used 'git clean -fdX'
-jlpm build
+yarn install         # Only needed if you used 'git clean -fdX'
+yarn build
 pip install -e ".[dev,test]"
 jupyter labextension develop . --overwrite
 jupyter server extension enable jupytercon2025_extension_workshop
@@ -632,8 +632,8 @@ jupyter server extension enable jupytercon2025_extension_workshop
 ### Environment Notes
 
 **✅ Do**: Use a virtual environment (conda/mamba/micromamba/venv)
-**✅ Do**: Use `jlpm` exclusively
-**❌ Don't**: Mix package managers (`npm`, `yarn`) with `jlpm`
+**✅ Do**: Use `yarn` exclusively
+**❌ Don't**: Mix package managers - don't use `npm` or `jlpm`
 **❌ Don't**: Mix lockfiles — keep only `yarn.lock`, not `package-lock.json`
 
 ## Best Practices
@@ -680,17 +680,17 @@ jupyter server extension enable jupytercon2025_extension_workshop
 
 ### Package Management
 
-**✅ Do**: Use `jlpm` consistently
+**✅ Do**: Use `yarn` consistently
 
 ```bash
-jlpm install
-jlpm build
+yarn install
+yarn build
 ```
 
 **❌ Don't**: Mix package managers or lockfiles
 
 - Don't use `package-lock.json` (this project uses `yarn.lock`)
-- Don't run `npm install`
+- Don't run `npm install` or `jlpm`
 
 ### Path Handling
 

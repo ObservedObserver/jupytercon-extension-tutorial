@@ -48,11 +48,7 @@ jupyter labextension list
 
 ### Development install
 
-Note: You will need NodeJS to build the extension package.
-
-The `jlpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `jlpm` below.
+Note: You will need NodeJS and Yarn to build the extension package.
 
 ```bash
 # Clone the repo to your local environment
@@ -71,21 +67,21 @@ jupyter server extension enable jupytercon2025_extension_workshop
 # Rebuild extension Typescript source after making changes
 # IMPORTANT: Unlike the steps above which are performed only once, do this step
 # every time you make a change.
-jlpm build
+yarn build
 ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
 
 ```bash
 # Watch the source directory in one terminal, automatically rebuilding when needed
-jlpm watch
+yarn watch
 # Run JupyterLab in another terminal
 jupyter lab
 ```
 
 With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
 
-By default, the `jlpm build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
+By default, the `yarn build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
 
 ```bash
 jupyter lab build --minimize=False
@@ -130,8 +126,8 @@ This extension is using [Jest](https://jestjs.io/) for JavaScript code testing.
 To execute them, execute:
 
 ```sh
-jlpm
-jlpm test
+yarn install
+yarn test
 ```
 
 #### Integration tests
